@@ -1,0 +1,78 @@
+/* You can add global styles to this file, and also import other style files */
+
+:root {
+  --base-background: #272a2b;
+  --shadow-first: #1a1c1c;
+  --shadow-second: #34383a;
+  --text: #dedede;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url('https://scrumpok.eers.ink/assets/Raleway.ttf');
+}
+
+html {
+  background: var(--base-background);
+  font-family: 'Raleway', sans-serif ;
+  color: var(--text);
+  font-variant-numeric: lining-nums;
+}
+
+input {
+  color: var(--text);
+  border: none;
+  height: 2em;
+  border-radius: 2.5em;
+  padding:0 0.5em ;
+  font-size: 1.5em;
+  background: var(--base-background);
+  box-shadow:  inset 2px 2px 3px var(--shadow-first),
+  inset -2px -2px 3px var(--shadow-second);
+}
+
+button {
+  color: var(--text);
+  border: none;
+  height: 2em;
+  border-radius: 2.5em;
+  padding:0 0.7em ;
+  font-size: 1.2em;
+  background: var(--base-background);
+  box-shadow:  2px 2px 3px var(--shadow-first),
+  -2px -2px 3px var(--shadow-second);
+}
+
+button:not([disabled]):hover {
+  box-shadow:  inset 2px 2px 3px var(--shadow-first),
+  inset -2px -2px 3px var(--shadow-second);
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: var(--shadow-second);
+  cursor: not-allowed;
+}
+
+button.inverted {
+  box-shadow: inset 2px 2px 3px var(--shadow-first),
+  inset -2px -2px 3px var(--shadow-second);
+}
+
+button.inverted:hover {
+  box-shadow: inset 4px 4px 5px var(--shadow-first),
+  inset -4px -4px 5px var(--shadow-second);
+  cursor: pointer;
+}
+
+a {
+  color: var(--text);
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.error{
+  color: #ff0000;
+}

@@ -1,0 +1,55 @@
+#back-button {
+  position: absolute;
+  top: 0.5em;
+  left: 1em;
+}
+
+#card-container {
+  display: grid;
+  margin: 10vh auto;
+  gap: 20px;
+  grid-template-columns: repeat(6, 1fr);
+  max-width: 40em;
+}
+
+#card-container button {
+  aspect-ratio: 1/1.4;
+  height: unset;
+  border-radius: 3%;
+  font-size: 2em;
+}
+
+.button-pressed {
+  box-shadow:  inset 2px 2px 3px var(--shadow-first),
+  inset -2px -2px 3px var(--shadow-second);
+}
+
+.table-container {
+  width: fit-content;
+  margin: auto;
+  padding: 2em;
+  border-radius: 40px;
+  background: var(--base-background);
+  box-shadow:  10px 10px 20px var(--shadow-first),
+  -10px -10px 20px var(--shadow-second);
+}
+
+.table-container .actions {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: space-evenly;
+  margin-bottom: 2em;
+}
+
+table {
+  border-collapse: collapse;
+  border-style: hidden;
+}
+
+th, td {
+  padding: 0.5em;
+  border: 1px solid var(--shadow-second);
+  min-width: 10em;
+  text-align: left;
+}

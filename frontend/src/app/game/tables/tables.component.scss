@@ -1,0 +1,73 @@
+.logout {
+  position: absolute;
+  top: 0.5em;
+  right: 1em;
+}
+
+#container {
+margin: 5em auto 0;
+  width: fit-content;
+}
+
+form {
+  margin: 3em 0 5em;
+  display: grid;
+  grid-template-columns: 1fr 3fr 2fr;
+  align-items: baseline;
+  gap: 5px;
+}
+
+form input {
+  font-size: 1.2em;
+}
+
+form button {
+  font-size: 1.1em;
+}
+
+form div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
+}
+
+.table-container {
+  padding: 1em;
+  border-radius: 40px;
+  background: var(--base-background);
+  box-shadow:  10px 10px 20px var(--shadow-first),
+  -10px -10px 20px var(--shadow-second);
+}
+
+table {
+  border-collapse: collapse;
+  border-style: hidden;
+}
+
+th, td {
+  padding: 0.5em;
+  border: 1px solid var(--shadow-second);
+  min-width: 10em;
+  text-align: left;
+}
+
+.monospaced {
+  font-family: monospace;
+}
+
+button img {
+  height: 0.8em;
+  position: relative;
+  top: 0.1em;
+  left: 0.05em;
+}
+
+.aligned-cell {
+  display: flex;
+  align-items: baseline;
+}
+
+.copy-to-clipboard {
+  float: right;
+  margin-left: 2em;
+}

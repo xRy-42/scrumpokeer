@@ -1,0 +1,22 @@
+<div id="login-container">
+  <form [formGroup]="formGroup">
+    <h3>Login or Register</h3>
+    <label>Email</label>
+    <input type="email" formControlName="email"/>
+    <p class="error-hint error">
+      <span *ngIf="formGroup.get('email')?.dirty && formGroup.get('email')?.errors">Email is missing or invalid</span>
+    </p>
+    <label>Password</label>
+    <input type="password" formControlName="password"/>
+    <p class="error-hint error">
+      <span
+        *ngIf="formGroup.get('password')?.dirty && formGroup.get('password')?.errors">Password is missing or invalid</span>
+    </p>
+    <span class="actions">
+      <button (click)="login()">Sing In</button>
+      <button (click)="register()" class="inverted">Sign Up</button>
+      <a href="/login#" (click)="forgotPassword()">Forgot Password</a>
+    </span>
+    <p *ngIf="authFailed" class="error-hint error">{{ authFailed }}</p>
+  </form>
+</div>

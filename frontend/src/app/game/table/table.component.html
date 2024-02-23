@@ -1,0 +1,34 @@
+<!--<p>table <span *ngIf="tableId !== ''">{{tableId}}</span> works!</p>-->
+<a [routerLink]="['/tables']" id="back-button">Tables</a>
+<div id="card-container">
+  <ng-container *ngFor="let value of votableValues">
+    <button (click)="voteCard(value)" [class.button-pressed]="vote === value"
+            [disabled]="votesRevealed || spectator">{{ value }}
+    </button>
+  </ng-container>
+</div>
+
+<div class="table-container">
+  <div class="actions">
+    <button (click)="spectate()">{{ spectator ? 'Player' : 'Spectator' }}</button>
+    <button (click)="revealVotes()">{{ votesRevealed ? 'Reset Votes' : 'Reveal Votes' }}</button>
+  </div>
+  <table>
+    <thead>
+    <th>Username</th>
+    <th>Vote</th>
+    </thead>
+    <tbody>
+    <tr *ngFor="let vote of currentVotes">
+      <td>{{ vote.user }}</td>
+      <td [ngSwitch]="true">
+        <span *ngSwitchCase="vote.spectator">spectator</span>
+        <span *ngSwitchCase="vote.vote !== '' && !votesRevealed">voted</span>
+        <span *ngSwitchCase="votesRevealed">{{ vote.vote }}</span>
+        <span *ngSwitchDefault></span>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+

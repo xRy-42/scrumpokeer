@@ -1,0 +1,46 @@
+<a [routerLink]="'/login'" (click)="logout()" class="logout">logout</a>
+
+<div id="container">
+  <h3>Your Pokeer-Tables</h3>
+  <form>
+    <label>Username</label>
+    <input type="text" [(ngModel)]="usernameInput" name="username"/>
+    <button (click)="changeUsername()">Change</button>
+    <label>Table</label>
+    <input type="text" [(ngModel)]="tableInput" name="nameOrId"/>
+    <div>
+      <button (click)="join(tableInput)">Join</button>
+      <button (click)="create(tableInput)">Create</button>
+    </div>
+  </form>
+  <p *ngIf="formError" class="error">{{ formError }}</p>
+  <div class="table-container">
+    <table>
+      <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Participants</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let table of tables | async">
+        <td>
+          <div class="aligned-cell">
+            <span class="monospaced">{{ table.id }}</span>
+            <button class="copy-to-clipboard" (click)="copyToClipboard(table.id!)"><img src="assets/copy.svg" alt="copy"></button>
+          </div>
+        </td>
+        <td><a [routerLink]="['/table', table.id!]">{{ table.name }}</a></td>
+        <td>{{ table.participants.length }}</td>
+        <td>
+          <button (click)="leave(table.id!)">Leave Room</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
