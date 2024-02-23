@@ -17,6 +17,10 @@ form {
   gap: 5px;
 }
 
+.span-row {
+  grid-column: span 3;
+}
+
 form input {
   font-size: 1.2em;
 }

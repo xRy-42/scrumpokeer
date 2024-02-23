@@ -5,15 +5,17 @@
   <form>
     <label>Username</label>
     <input type="text" [(ngModel)]="usernameInput" name="username"/>
-    <button (click)="changeUsername()">Change</button>
+    <button [disabled]="!validateUsername()" (click)="changeUsername()">Change</button>
+    <p *ngIf="usernameError" class="error span-row">{{ usernameError }}</p>
+    <p *ngIf="!validateUsername()" class="error span-row">Username is invalid. Only use [A-Za-Z.-]</p>
     <label>Table</label>
     <input type="text" [(ngModel)]="tableInput" name="nameOrId"/>
     <div>
-      <button (click)="join(tableInput)">Join</button>
-      <button (click)="create(tableInput)">Create</button>
+      <button [disabled]="tableInput === ''" (click)="join(tableInput)">Join</button>
+      <button [disabled]="tableInput.indexOf(' ') !== -1 || tableInput === ''" (click)="create(tableInput)">Create</button>
     </div>
+    <p *ngIf="tableError" class="error span-row">{{ tableError }}</p>
   </form>
-  <p *ngIf="formError" class="error">{{ formError }}</p>
   <div class="table-container">
     <table>
       <thead>

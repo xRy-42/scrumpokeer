@@ -3,13 +3,14 @@ import PocketBase from 'pocketbase';
 import {Register} from "../_models/register";
 import {Table} from "../_models/table";
 import {Vote} from "../_models/vote";
+import {environment} from "../../environments/environment";
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class PokeerbaseService {
-  pb = new PocketBase('http://localhost:8090');
+  pb = new PocketBase(environment.BACKEND_BASE_URI);
   constructor() {
   }
 
@@ -38,7 +39,7 @@ export class PokeerbaseService {
     return auth;
   }
 
-  public username = this.pb.authStore.model ? this.pb.authStore.model['username'] : '';
+  public username = this.pb.authStore.model!['username'];
 
   public async changeUsername(newUsername: string) {
     return await this.pb.collection('users').update(this.pb.authStore.model!['id'], {username: newUsername});

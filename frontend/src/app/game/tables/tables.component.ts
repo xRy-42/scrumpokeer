@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {Table} from "../../_models/table";
 import {PokeerbaseService} from "../../_services/pokeerbase.service";
 import {AsyncPipe, NgForOf, NgIf} from "@angular/common";
-import {FormsModule} from "@angular/forms";
+import {FormBuilder, FormsModule, Validators} from "@angular/forms";
 import {Router, RouterLink} from "@angular/router";
 
 @Component({
@@ -22,23 +22,26 @@ export class TablesComponent {
   tables: Promise<Table[]> = this.pb.listMyTables();
   tableInput = "";
   usernameInput = "";
-  formError: string | null = null;
+  tableError: string | null = null;
+  usernameError: string | null = null;
 
-  constructor(private pb: PokeerbaseService, private router: Router) {
+  constructor(private pb: PokeerbaseService, private router: Router, private fb: FormBuilder) {
     this.usernameInput = this.pb.username;
   }
 
   changeUsername() {
-    this.pb.changeUsername(this.usernameInput);
+    this.pb.changeUsername(this.usernameInput).catch(error => {
+      this.usernameError = error.toString()
+    });
   }
 
   join(tableIdOrName: string) {
     if (tableIdOrName != "") {
       this.pb.joinTable(tableIdOrName).catch(error => {
-        this.formError = error.toString()
+        this.tableError = error.toString()
       }).then(resp => {
         if (resp) {
-          this.formError = null;
+          this.tableError = null;
           this.tables = this.pb.listMyTables();
         }
       });
@@ -48,10 +51,10 @@ export class TablesComponent {
   create(tableIdOrName: string) {
     if (tableIdOrName != "") {
       this.pb.createTable(tableIdOrName).catch(error => {
-        this.formError = error.toString()
+        this.tableError = error.toString()
       }).then(resp => {
         if (resp) {
-          this.formError = null;
+          this.tableError = null;
           this.tables = this.pb.listMyTables();
         }
       });
@@ -72,5 +75,9 @@ export class TablesComponent {
   logout() {
     this.pb.logout();
     this.router.navigate(['/login']);
+  }
+
+  validateUsername() {
+    return new RegExp(/^\w[\w.\-]*$/).test(this.usernameInput)
   }
 }
