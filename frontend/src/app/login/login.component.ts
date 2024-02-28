@@ -26,11 +26,10 @@ export class LoginComponent {
   }
 
   public login() {
-    console.log(this.formGroup)
     if (this.formGroup.valid) {
       const authData = this.pb.login(this.formGroup.get('email')!.value!, this.formGroup.get('password')!.value!);
       authData.catch(reason => reason.toString() === 'ClientResponseError 400: Failed to authenticate.' ?
-            this.authFailed = 'Auth failed. Try register first' :
+            this.authFailed = 'Auth failed. Verify your email and password are correct or register first.' :
             reason.toString() === 'ClientResponseError 403: Please verify your email first.' ?
               this.authFailed = 'Please verify your email first.' :
               this.authFailed = 'Some wierd happened'

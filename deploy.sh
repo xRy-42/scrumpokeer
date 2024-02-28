@@ -12,3 +12,7 @@ ssh scrumpokeer "rm -rf scrumpokeer/pb_public/* scrumpokeer/release.zip"
 scp ./release.zip scrumpokeer:/home/michael/scrumpokeer/
 
 ssh scrumpokeer "cd scrumpokeer && unzip release.zip -d pb_public/"
+
+echo ""
+echo ""
+echo "   > Deployment successful!"

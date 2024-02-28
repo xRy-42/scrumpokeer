@@ -18,11 +18,14 @@ export class PokeerbaseService {
     return this.pb.authStore.isValid && this.pb.authStore.model!['verified'];
   }
 
-  public login(username: string, password: string) {
+  public async login(username: string, password: string) {
     return this.pb.collection('users').authWithPassword(
       username,
       password,
-    );
+    ).then(res => {
+      this.username = this.pb.authStore.model!['username'];
+      return res;
+    });
   }
 
   public async register(email: string, password: string) {
@@ -39,7 +42,7 @@ export class PokeerbaseService {
     return auth;
   }
 
-  public username = this.pb.authStore.model!['username'];
+  public username = this.pb.authStore.model?.['username'];
 
   public async changeUsername(newUsername: string) {
     return await this.pb.collection('users').update(this.pb.authStore.model!['id'], {username: newUsername});
